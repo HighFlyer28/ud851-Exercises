@@ -156,14 +156,36 @@ public class TaskContentProvider extends ContentProvider {
     @Override
     public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
 
-        // TODO (1) Get access to the database and write URI matching code to recognize a single item
+        // Completed (1) Get access to the database and write URI matching code to recognize a single item
+        final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
+        int match = sUriMatcher.match(uri);
+        Uri returnUri; // URI to be returned
+        int noOfRowsDeleted;
+        switch (match) {
+            case TASK_WITH_ID:
+                String whereClause = "_id=?";
+                String idToBeDeleted = uri.getPathSegments().get(1);
+                String[] whereSelectionArgs = new String[]{idToBeDeleted};
+                noOfRowsDeleted = db.delete(TABLE_NAME, whereClause, whereSelectionArgs);
+                break;
+            // Set the value for the returnedUri and write the default case for unknown URI's
+            // Default case throws an UnsupportedOperationException
+            default:
+                throw new UnsupportedOperationException("Unknown uri: " + uri);
+        }
 
-        // TODO (2) Write the code to delete a single row of data
+        // Notify the resolver if the uri has been changed, and return the newly inserted URI
+        if ( noOfRowsDeleted !=  1) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+        // Return constructed uri (this points to the newly inserted row of data)
+        return noOfRowsDeleted;
+
+        // Completed (2) Write the code to delete a single row of data
         // [Hint] Use selections to delete an item by its row ID
 
-        // TODO (3) Notify the resolver of a change and return the number of items deleted
+        // Completed (3) Notify the resolver of a change and return the number of items deleted
 
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 
 
