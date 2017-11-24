@@ -23,11 +23,11 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/action_settings"
-            android:parentActivityName=".VisualizerActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".VisualizerActivity" />
+            android:label="@string/action_settings">
+            <!--android:parentActivityName=".VisualizerActivity">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value=".VisualizerActivity" />-->
         </activity>
     </application>
 </manifest>

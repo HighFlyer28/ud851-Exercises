@@ -111,4 +111,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        /* Register the preference change listener */
+//        getPreferenceScreen().getSharedPreferences()
+//                .registerOnSharedPreferenceChangeListener(this);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        /* Unregister the preference change listener */
+//        getPreferenceScreen().getSharedPreferences()
+//                .unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
