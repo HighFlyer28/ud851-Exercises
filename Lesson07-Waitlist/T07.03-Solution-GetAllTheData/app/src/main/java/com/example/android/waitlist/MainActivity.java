@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        String s = "asd";
+        if ("".equals(s)){
+            System.out.println("asd");
+        }
         RecyclerView waitlistRecyclerView;
 
         // Set local attributes to corresponding views

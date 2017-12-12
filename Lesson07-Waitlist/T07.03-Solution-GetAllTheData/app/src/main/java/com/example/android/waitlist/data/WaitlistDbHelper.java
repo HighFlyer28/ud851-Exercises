@@ -43,4 +43,18 @@ public class WaitlistDbHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + WaitlistEntry.TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
+
+    private void testmethod(){
+
+        boolean isEntry = true;
+        boolean isNetworkAvailable = true;
+        if(isEntry && isNetworkAvailable) {
+            String b;
+        } else if(!isEntry && isNetworkAvailable) {
+            String b;
+        } else if(!isEntry && !isNetworkAvailable) {
+            String b;
+        }
+    }
 }
+
