@@ -24,6 +24,7 @@ import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 import android.widget.Toast;
 
@@ -66,6 +67,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             // Updates the summary for the preference
             if (!(preference instanceof CheckBoxPreference)) {
                 String value = sharedPreferences.getString(preference.getKey(), "");
+                value = value.replace(",",".");
                 setPreferenceSummary(preference, value);
             }
         }
@@ -79,13 +81,17 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
      */
     private void setPreferenceSummary(Preference preference, String value) {
         if (preference instanceof ListPreference) {
+            preference.setSummary(value);
             // For list preferences, figure out the label of the selected value
-            ListPreference listPreference = (ListPreference) preference;
-            int prefIndex = listPreference.findIndexOfValue(value);
-            if (prefIndex >= 0) {
-                // Set the summary to that label
-                listPreference.setSummary(listPreference.getEntries()[prefIndex]);
-            }
+//            System.out.println("*************************************");
+//            System.out.println(value);
+//            ListPreference listPreference = (ListPreference) preference;
+//            int prefIndex = listPreference.findIndexOfValue(value);
+//            if (prefIndex >= 0) {
+//                // Set the summary to that label
+//                listPreference.setSummary(listPreference.getEntries()[prefIndex]);
+
+//            }
         } else if (preference instanceof EditTextPreference) {
             // For EditTextPreferences, set the summary to the value's simple string representation.
             preference.setSummary(value);
@@ -108,6 +114,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         String sizeKey = getString(R.string.pref_size_key);
         if (preference.getKey().equals(sizeKey)) {
             String stringSize = (String) newValue;
+            stringSize = stringSize.replace(",",".");
             try {
                 float size = Float.parseFloat(stringSize);
                 // If the number is outside of the acceptable range, show an error.
@@ -120,7 +127,20 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 error.show();
                 return false;
             }
+            System.out.println("on preference change");
+//            PreferenceManager prefManager = preference.getPreferenceManager();
+//            Preference.
+//            SharedPreferences sharedPreferences = getPreferenceScreen().getSharedPreferences();
+//            System.out.println("got shared");
+//            System.out.println(stringSize);
+//            SharedPreferences.Editor editor = sharedPreferences.edit();
+//            System.out.println("got editor");
+//            editor.putString(preference.getKey(), stringSize);
+//            System.out.println("put string");
+//            editor.apply();
+//            System.out.println("finished editing preference");
         }
+
         return true;
     }
 
@@ -130,6 +150,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
     }
+
 
     @Override
     public void onDestroy() {

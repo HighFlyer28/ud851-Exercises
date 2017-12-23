@@ -115,6 +115,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
         if (preference.getKey().equals(sizeKey)) {
             Toast error = Toast.makeText(getContext(), "Please select a number between 0.1 and 3", Toast.LENGTH_SHORT);
             String stringSize = ((String) (newValue)).trim();
+            stringSize = stringSize.replace(",",".");
             if (stringSize.equals("")) stringSize = "1";
             try {
                 float size = Float.parseFloat(stringSize);
