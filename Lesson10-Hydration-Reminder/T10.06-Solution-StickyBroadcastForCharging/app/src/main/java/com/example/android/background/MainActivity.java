@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements
             BatteryManager batteryManager = (BatteryManager) getSystemService(BATTERY_SERVICE);
             // COMPLETED (3) Call isCharging on the battery manager and pass the result on to your show
             // charging method
+            System.out.println("********************");
+            System.out.println(batteryManager.isCharging());
             showCharging(batteryManager.isCharging());
         } else {
             // COMPLETED (4) If your user is not on M+, then...
