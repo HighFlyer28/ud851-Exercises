@@ -40,6 +40,7 @@ public class GreenAdapter extends RecyclerView.Adapter<GreenAdapter.NumberViewHo
     private static final String TAG = GreenAdapter.class.getSimpleName();
 
     private int mNumberItems;
+    private int  a = 0;
 
     /**
      * Constructor for GreenAdapter that accepts a number of items to display and the specification

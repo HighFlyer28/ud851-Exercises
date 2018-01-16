@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
 
     defaultConfig {
         applicationId "com.example.android.boardingpass"
         minSdkVersion 10
         targetSdkVersion 25
+        vectorDrawables.useSupportLibrary = true
         versionCode 1
         versionName "1.0"
     }
@@ -19,6 +19,7 @@ android {
     }
     dataBinding.enabled = true;
 
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
